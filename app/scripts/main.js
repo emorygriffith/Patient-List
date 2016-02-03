@@ -54,8 +54,13 @@ var PatientList = Backbone.View.extend({
 
 var EditPatient = Backbone.View.extend({
   el: '.page',
-  render: function(patients){
-    var obj = {patients};
+  render: function(options){
+
+    
+
+
+    //template logic
+    var obj = {};
     var template = _.template($('#edit-patient-template').html());
     var html = template(obj);
     this.$el.html(html);
@@ -68,7 +73,7 @@ var EditPatient = Backbone.View.extend({
     console.log(patientDetails);
     var patient = new Patient();
     patient.save(patientDetails, function(){
-      success: console.log(patient);
+      router.navigate('',{trigger:true});
     });
     return false;
   }
@@ -84,7 +89,8 @@ var editPatient = new EditPatient();
 var Router = Backbone.Router.extend({
   routes: {
     '': 'home',
-    'new': 'editPatient'
+    'new': 'editPatient',
+    'edit/:id': 'editPatient'
   }
 });
 
@@ -92,8 +98,8 @@ var router = new Router();
 router.on('route:home', function(){
   patientList.render();
 });
-router.on('route:editPatient', function(){
-  editPatient.render();
+router.on('route:editPatient', function(id){
+  editPatient.render({id: id});
   console.log('show user form');
 });
 

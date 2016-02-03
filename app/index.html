@@ -58,7 +58,7 @@
               <td><%= patient.get('dob') %></td>
               <td><%= patient.get('gender') %></td>
               <td><%= patient.get('location') %></td>
-              <td><a href='#'>Edit</a></td>
+              <td><a href='#/edit/<%= patient.id %>' class='btn btn-success'>Edit</a></td>
             </tr>
           <% }); %>
         </tbody>
