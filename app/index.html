@@ -28,16 +28,19 @@
 
     <div class="container">
 
+      <h1>Patient List</h1>
+
       <div class="page">
-          <h1>Patients</h1>
+        <!-- app goes here -->
       </div>
 
     </div>
 
 
-    <script type="text/template" id="patient-list-template">
-
-      <h1>Patient List</h1>
+  <script type="text/template" id="patient-list-template">
+    <hr>
+    <a href='#/new' class='btn btn-primary'>Add Patient</a>
+    <hr>
     <table class='table striped'>
       <thead>
         <tr>
@@ -45,7 +48,7 @@
           <th>Last</th>
           <th>DOB</th>
           <th>Gender</th>
-          <th></th>
+          <th>Location</th>
         </tr>
         <tbody>
           <% _.each(patients, function(patient){%>
@@ -54,7 +57,7 @@
               <td><%= patient.get('last_name') %></td>
               <td><%= patient.get('dob') %></td>
               <td><%= patient.get('gender') %></td>
-              <!-- <td><%= patient.get('id') %></td> -->
+              <td><%= patient.get('location') %></td>
               <td><a href='#'>Edit</a></td>
             </tr>
           <% }); %>
@@ -62,6 +65,37 @@
       </thead>
     </table>
   </script>
+
+  <script type="text/template" id="edit-patient-template">
+        <form class="edit-patient-form">
+          <legend>Add Patient<legend>
+            </br>
+          <label>First Name</label>
+          <input type="text" name="first_name"/>
+          </br>
+          <label>Last Name</label>
+          <input type="text" name="last_name"/>
+          </br>
+          <label>DOB</label>
+          <input type="text" name="dob"/>
+          </br>
+          <label>Location</label>
+          <input type="text" name="gender"/>
+          </br>
+          <label>Gender</label>
+          <input type="text" name="location"/>
+          </br>
+          <label>Status</label>
+          <select name="status">
+              <option value="followup">Follow Up</option>
+              <option value="ignore">Ignore</option>
+              <option value="handled">Handled</option>
+          </select>
+          </br>
+          <button type="submit" class="btn btn-primary">Create</button>
+        <form>
+  </script>
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
