@@ -55,15 +55,31 @@ var PatientList = Backbone.View.extend({
 var EditPatient = Backbone.View.extend({
   el: '.page',
   render: function(options){
+    var that = this;
+    //conditional --> if patient.id present, render view with their info, else blank
+    if (options.id) {
+        var id = options.id;
+        var query = new Parse.Query(Patient);
+        query.get(id, {
+          success: function(patient){
+            //template logic
+            var obj = {patient: patient};
+            var template = _.template($('#edit-patient-template').html());
+            var html = template(obj);
+            that.$el.html(html);
+          }
+        });
 
-    
+    } else {
+        //template logic
+        var obj = {user: null};
+        var template = _.template($('#edit-patient-template').html());
+        var html = template(obj);
+        this.$el.html(html);
+    }
 
 
-    //template logic
-    var obj = {};
-    var template = _.template($('#edit-patient-template').html());
-    var html = template(obj);
-    this.$el.html(html);
+
   },
   events: {
     'submit .edit-patient-form': 'savePatient'
