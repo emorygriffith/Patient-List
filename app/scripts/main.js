@@ -1,26 +1,7 @@
-
+(function() {
 
 //---PARSE DB CONFIG-----//
 Parse.initialize("BVRabUTxJBiBlmjrB7czMMEGAUHpNEWe0xqWojf7", "YVlExM39x22WWZ8s3qsG0tvwMGjxCSEvPm7uFHz1");
-
-
-//------Snippets-------//
-$.fn.serializeObject = function()
-{
-    var o = {};
-    var a = this.serializeArray();
-    $.each(a, function() {
-        if (o[this.name] !== undefined) {
-            if (!o[this.name].push) {
-                o[this.name] = [o[this.name]];
-            }
-            o[this.name].push(this.value || '');
-        } else {
-            o[this.name] = this.value || '';
-        }
-    });
-    return o;
-};
 
 
 //-------------MODELS-----------------------//
@@ -56,9 +37,10 @@ var EditPatient = Backbone.View.extend({
   el: '.page',
   render: function(options){
     var that = this;
+    var id = options.id;
+
     //conditional --> if patient.id present, render view with their info, else blank
-    if (options.id) {
-        var id = options.id;
+    if (id) {
         var query = new Parse.Query(Patient);
         query.get(id, {
           success: function(patient){
@@ -79,10 +61,10 @@ var EditPatient = Backbone.View.extend({
     }
 
 
-
   },
   events: {
-    'submit .edit-patient-form': 'savePatient'
+    'submit .edit-patient-form': 'savePatient',
+    'click .delete': 'deletePatient'
   },
   savePatient: function(ev){
     var patientDetails = $(ev.currentTarget).serializeObject();
@@ -91,6 +73,12 @@ var EditPatient = Backbone.View.extend({
     patient.save(patientDetails, function(){
       router.navigate('',{trigger:true});
     });
+    return false;
+  },
+  deletePatient: function(ev){
+
+      console.log(this);
+
     return false;
   }
 });
@@ -121,3 +109,7 @@ router.on('route:editPatient', function(id){
 
 //-------Start History------//
 Backbone.history.start();
+
+
+
+})();
