@@ -49,6 +49,7 @@
           <th>DOB</th>
           <th>Gender</th>
           <th>Location</th>
+          <th>Status</th>
         </tr>
         <tbody>
           <% _.each(patients, function(patient){%>
@@ -58,6 +59,7 @@
               <td><%= patient.get('dob') %></td>
               <td><%= patient.get('gender') %></td>
               <td><%= patient.get('location') %></td>
+              <td><%= patient.get('status') %></td>
               <td><a href='#/edit/<%= patient.id %>' class='btn btn-success'>Edit</a></td>
             </tr>
           <% }); %>
@@ -71,28 +73,30 @@
           <legend><%= patient ? 'Update' : 'Create' %> Patient<legend>
             </br>
           <label>First Name</label>
-          <input type="text" name="first_name"/>
+          <input type="text" name="first_name" value="<%= patient ? patient.get('first_name') : '' %>"/>
           </br>
           <label>Last Name</label>
-          <input type="text" name="last_name"/>
+          <input type="text" name="last_name" value="<%= patient ? patient.get('last_name') : '' %>"/>
           </br>
           <label>DOB</label>
-          <input type="text" name="dob"/>
+          <input type="text" name="dob" value="<%= patient ? patient.get('dob') : '' %>"/>
           </br>
           <label>Location</label>
-          <input type="text" name="gender"/>
+          <input type="text" name="gender" value="<%= patient ? patient.get('gender') : '' %>"/>
           </br>
           <label>Gender</label>
-          <input type="text" name="location"/>
+          <input type="text" name="location" value="<%= patient ? patient.get('location') : '' %>"/>
           </br>
           <label>Status</label>
-          <select name="status">
-              <option value="followup">Follow Up</option>
-              <option value="ignore">Ignore</option>
-              <option value="handled">Handled</option>
-          </select>
+          <input type="text" name="status" value="<%= patient ? patient.get('status') : '' %>"/>
           </br>
-          <button type="submit" class="btn btn-primary">Create</button>
+
+          <!-- when we serialize this form on an update, we'll get an id here to let Parse know who we're talking about -->
+          <% if (patient) {%>
+              <input type="hidden" name="id" value="<%= patient.id %>"
+          <% }; %>
+          </br>
+          <button type="submit" class="btn btn-primary"><%= patient ? 'Update' : 'Create' %></button>
         <form>
   </script>
 
