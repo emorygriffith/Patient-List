@@ -68,7 +68,7 @@
 
   <script type="text/template" id="edit-patient-template">
         <form class="edit-patient-form">
-          <legend>Add Patient<legend>
+          <legend><%= patient ? 'Update' : 'Create' %> Patient<legend>
             </br>
           <label>First Name</label>
           <input type="text" name="first_name"/>

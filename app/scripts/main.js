@@ -72,7 +72,7 @@ var EditPatient = Backbone.View.extend({
 
     } else {
         //template logic
-        var obj = {user: null};
+        var obj = {patient: null};
         var template = _.template($('#edit-patient-template').html());
         var html = template(obj);
         this.$el.html(html);
@@ -116,7 +116,6 @@ router.on('route:home', function(){
 });
 router.on('route:editPatient', function(id){
   editPatient.render({id: id});
-  console.log('show user form');
 });
 
 
