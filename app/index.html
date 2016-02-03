@@ -37,7 +37,7 @@
 
     <script type="text/template" id="patient-list-template">
 
-      <h1>YO IM WORKING</h1>
+      <h1>Patient List</h1>
     <table class='table striped'>
       <thead>
         <tr>
@@ -54,6 +54,7 @@
               <td><%= patient.get('last_name') %></td>
               <td><%= patient.get('dob') %></td>
               <td><%= patient.get('gender') %></td>
+              <!-- <td><%= patient.get('id') %></td> -->
               <td><a href='#'>Edit</a></td>
             </tr>
           <% }); %>
@@ -90,7 +91,7 @@
     <!-- endbuild -->
 
     <!-- build:js scripts/main.js -->
-    <script src="data.js"></script>
+    <!-- <script src="data.js"></script> -->
     <script src="scripts/main.js"></script>
     <!-- endbuild -->
   </body>
