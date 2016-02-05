@@ -28,7 +28,8 @@ var PatientList = Backbone.View.extend({
   }, //end render
   error: function(){
         console.log('There was some error in loading and processing the JSON file');
-     }
+  }
+
 });
 
 
@@ -37,12 +38,12 @@ var EditPatient = Backbone.View.extend({
   el: '.page',
   render: function(options){
     var that = this;
-    var id = options.id;
+    //var theID = options.id;
 
     //conditional --> if patient.id present, render view with their info, else blank
-    if (id) {
+    if (options.id) {
         var query = new Parse.Query(Patient);
-        query.get(id, {
+        that.patient = query.get(options.id, {
           success: function(patient){
             //template logic
             var obj = {patient: patient};
@@ -76,15 +77,21 @@ var EditPatient = Backbone.View.extend({
     return false;
   },
   deletePatient: function(ev){
+    //need to ge the ID of the patient here and then send a
+    console.log(this.patient);
 
-      console.log(this);
 
     return false;
   }
+
 });
+
+
+
 
 var patientList = new PatientList();
 var editPatient = new EditPatient();
+
 
 
 
@@ -105,6 +112,7 @@ router.on('route:home', function(){
 router.on('route:editPatient', function(id){
   editPatient.render({id: id});
 });
+
 
 
 //-------Start History------//

@@ -28,7 +28,7 @@
 
     <div class="container">
 
-      <h1>Patient List</h1>
+      <h1><a href="#">Patient List</a></h1>
       <hr>
       <div class="page">
         <!-- app goes here -->
@@ -92,7 +92,12 @@
           <input type="text" class="form-control" name="location" value="<%= patient ? patient.get('location') : '' %>"/>
           </br>
           <label>Status</label>
-          <input type="text" class="form-control" name="status" value="<%= patient ? patient.get('status') : '' %>"/>
+          <!-- <input type="text" class="form-control" name="status" value="<%= patient ? patient.get('status') : '' %>"/> -->
+          <select name="status">
+            <option value="InProcess">In Process</option>
+            <option value="FollowUp">Follow Up</option>
+            <option value="Ignore">Ignore</option>
+          </select>
           </br>
 
           <!-- when we serialize this form on an update, we'll get an id here to let Parse know who we're talking about -->
