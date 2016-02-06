@@ -38,7 +38,7 @@ var EditPatient = Backbone.View.extend({
   el: '.page',
   render: function(options){
     var that = this;
-    //var theID = options.id;
+    this.id = options.id;
 
     //conditional --> if patient.id present, render view with their info, else blank
     if (options.id) {
@@ -78,7 +78,23 @@ var EditPatient = Backbone.View.extend({
   },
   deletePatient: function(ev){
     //need to ge the ID of the patient here and then send a
-    console.log(this.patient);
+    var theID = this.id;
+
+    console.log(theID);
+
+    var query = new Parse.Query(Patient);
+    query.get(theID, {
+      success: function(obj){
+        alert(obj);
+        obj.destroy();
+      },
+      error: function(object, error) {
+        // The object was not retrieved successfully.
+        // error is a Parse.Error with an error code and description.
+      }
+
+    })
+
 
 
     return false;
