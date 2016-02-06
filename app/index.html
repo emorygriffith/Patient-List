@@ -85,10 +85,10 @@
           <label>DOB</label>
           <input type="text" class="form-control" name="dob" value="<%= patient ? patient.get('dob') : '' %>"/>
           </br>
-          <label>Location</label>
+          <label>Gender</label>
           <input type="text" class="form-control" name="gender" value="<%= patient ? patient.get('gender') : '' %>"/>
           </br>
-          <label>Gender</label>
+          <label>Location</label>
           <input type="text" class="form-control" name="location" value="<%= patient ? patient.get('location') : '' %>"/>
           </br>
           <label>Status</label>
@@ -109,7 +109,7 @@
               <button type="button" class="btn btn-danger delete">Delete</button>
             </p>
           <% }; %>
- 
+
           <button type="submit" class="btn btn-primary"><%= patient ? 'Update' : 'Create' %></button>
 
         <form>

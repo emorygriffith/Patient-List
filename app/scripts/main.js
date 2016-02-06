@@ -85,8 +85,8 @@ var EditPatient = Backbone.View.extend({
     var query = new Parse.Query(Patient);
     query.get(theID, {
       success: function(obj){
-        alert(obj);
         obj.destroy();
+        router.navigate('',{trigger:true});
       },
       error: function(object, error) {
         // The object was not retrieved successfully.
