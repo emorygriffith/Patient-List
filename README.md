@@ -10,7 +10,7 @@ How to use:
 -Run bower install
 
 
-
+____________________
 
 Libraries used:
 
