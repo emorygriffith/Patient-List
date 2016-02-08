@@ -11,7 +11,11 @@ How to use:
 
 Libraries used:
 Backbone.js
+
 Parse
+
 jQuery
+
 Bootstrap
+
 underscore.js
